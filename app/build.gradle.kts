@@ -8,7 +8,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.hamoda.RunJourney"
+        applicationId = "com.hamoda.runjourney"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

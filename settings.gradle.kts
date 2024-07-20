@@ -21,4 +21,12 @@ dependencyResolutionManagement {
 
 rootProject.name = "Run Journey"
 include(":app")
- 
+include(":auth:data")
+include(":auth:domain")
+include(":auth:presentation")
+include(":run:data")
+include(":run:presentation")
+include(":run:domain")
+include(":core:data")
+include(":core:presentation")
+include(":core:domain")
