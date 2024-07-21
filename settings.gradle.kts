@@ -19,7 +19,9 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Run Journey"
+rootProject.name = "RunJourney"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":auth:data")
 include(":auth:domain")
