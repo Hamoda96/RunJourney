@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hamoda.RunJourney"
+    namespace = "com.hamoda.runjourney"
     compileSdk = 34
 
     defaultConfig {
