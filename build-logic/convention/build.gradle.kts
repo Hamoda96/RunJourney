@@ -18,5 +18,13 @@ gradlePlugin{
             id = "runjourney.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+        register("androidApplicationCompose") {
+            id = "runjourney.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
+        register("androidLibrary") {
+            id = "runjourney.android.library"
+            implementationClass = "AndroidLibraryConventionPluging"
+        }
     }
 }
