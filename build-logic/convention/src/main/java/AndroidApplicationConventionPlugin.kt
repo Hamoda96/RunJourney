@@ -1,4 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.hamoda.convention.ExtensionType
+import com.hamoda.convention.configureBuildTypes
 import com.hamoda.convention.configureKotlinAndroid
 import com.hamoda.convention.libs
 import org.gradle.api.Plugin
@@ -21,7 +23,12 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     versionName = libs.findVersion("projectVersionName").get().toString()
                 }
 
-                configureKotlinAndroid(this)
+                configureKotlinAndroid(commonExtension = this)
+
+                configureBuildTypes(
+                    commonExtension = this,
+                    extensionType = ExtensionType.APPLICATION
+                )
             }
         }
     }
