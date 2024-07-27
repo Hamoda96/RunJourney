@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hamoda.core.connectivity"
+    namespace = "com.hamoda.connectivity"
     compileSdk = 34
 
     defaultConfig {

@@ -1,4 +1,4 @@
-package com.hamoda.core.connectivity
+package com.hamoda.connectivity
 
 import org.junit.Test
 
