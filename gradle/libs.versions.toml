@@ -22,9 +22,9 @@ junit = "4.13.2"
 junitVersion = "1.2.0"
 jetbrainsKotlinJvm = "1.9.0"
 koin = "3.5.6"
-kotlin = "1.9.0"
+kotlin = "1.9.22"
 kotlinx-serialization = "1.6.3"
-ksp = "2.0.0-1.0.22"
+ksp = "1.9.22-1.0.17"
 ktor = "2.3.11"
 ktorClientLogging = "2.3.8"
 ktorServerCallLogging = "2.3.7"
@@ -146,6 +146,7 @@ runjourney-android-application-compose = { id = "runjourney.android.application.
 runjourney-android-library = { id = "runjourney.android.library", version = "unspecified" }
 runjourney-android-library-compose = { id = "runjourney.android.library.compose", version = "unspecified" }
 runjourney-android-feature-ui = { id = "runjourney.android.feature.ui", version = "unspecified" }
+runjourney-android-room = { id = "runjourney.android.room", version = "unspecified" }
 
 [bundles]
 compose = [

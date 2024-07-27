@@ -34,5 +34,9 @@ gradlePlugin{
             id = "runjourney.android.feature.ui"
             implementationClass = "AndroidFeatureUiConventionPlugin"
         }
+        register("androidRoom") {
+            id = "runjourney.android.room"
+            implementationClass = "AndroidRoomConventionPlugin"
+        }
     }
 }
