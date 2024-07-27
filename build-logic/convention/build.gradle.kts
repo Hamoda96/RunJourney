@@ -38,5 +38,13 @@ gradlePlugin{
             id = "runjourney.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
+        register("jvmLibrary") {
+            id = "runjourney.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
+        register("jvmKtor") {
+            id = "runjourney.jvm.ktor"
+            implementationClass = "JvmKtorConventionPlugin"
+        }
     }
 }

@@ -7,7 +7,7 @@ androidTools = "31.5.0"
 bson = "4.11.1"
 coilCompose = "2.6.0"
 composeBom = "2024.04.01"
-composeCompiler = "1.5.1"
+composeCompiler = "1.5.8"
 composeMaterialWearOs = "1.0.0-alpha23"
 composeWearOs = "1.3.1"
 core = "1.10.3"
@@ -147,6 +147,8 @@ runjourney-android-library = { id = "runjourney.android.library", version = "uns
 runjourney-android-library-compose = { id = "runjourney.android.library.compose", version = "unspecified" }
 runjourney-android-feature-ui = { id = "runjourney.android.feature.ui", version = "unspecified" }
 runjourney-android-room = { id = "runjourney.android.room", version = "unspecified" }
+runjourney-jvm-library = { id = "runjourney.jvm.library", version = "unspecified" }
+runjourney-jvm-ktor = { id = "runjourney.jvm.ktor", version = "unspecified" }
 
 [bundles]
 compose = [

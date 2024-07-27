@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.runjourney.android.library)
+    alias(libs.plugins.runjourney.jvm.ktor)
 }
 
 android {
