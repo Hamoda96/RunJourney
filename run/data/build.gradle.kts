@@ -15,7 +15,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(projects.core.domain)
-//    implementation(projects.core.database)
+    implementation(projects.core.database)
     implementation(projects.run.domain)
-//    implementation(projects.core.connectivity.domain)
+    implementation(projects.core.connectivity.domain)
 }

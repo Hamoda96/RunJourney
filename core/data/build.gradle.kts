@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.runjourney.android.library)
+    alias(libs.plugins.runjourney.jvm.ktor)
 }
 
 android {
@@ -8,6 +9,8 @@ android {
 
 dependencies {
     implementation(libs.timber)
+    implementation(libs.bundles.koin)
 
     implementation(projects.core.domain)
+    implementation(projects.core.database)
 }
