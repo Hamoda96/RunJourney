@@ -24,11 +24,15 @@ gradlePlugin{
         }
         register("androidLibrary") {
             id = "runjourney.android.library"
-            implementationClass = "AndroidLibraryConventionPluging"
+            implementationClass = "AndroidLibraryConventionPlugin"
         }
         register("androidLibraryCompose") {
             id = "runjourney.android.library.compose"
-            implementationClass = "AndroidLibraryComposeConventionPluging"
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
+        }
+        register("androidFeatureUi") {
+            id = "runjourney.android.feature.ui"
+            implementationClass = "AndroidFeatureUiConventionPlugin"
         }
     }
 }

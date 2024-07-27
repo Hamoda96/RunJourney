@@ -1,4 +1,4 @@
-package com.hamoda.core.connectivity
+package com.hamoda.connectivity.data
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.hamoda.core.connectivity.test", appContext.packageName)
+        assertEquals("com.hamoda.connectivity.data.test", appContext.packageName)
     }
 }
