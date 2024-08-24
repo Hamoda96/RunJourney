@@ -14,13 +14,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hamoda.auth.presentation.R
+import com.hamoda.core.presentation.designsystem.RunJourneyTheme
+import com.hamoda.core.presentation.designsystem.components.GradientBackground
 import com.hamoda.core.presentation.designsystem.components.LogoIcon
 
 @Composable
-inline fun ColumnScope.RunJourneyLogoSection(modifier: Modifier = Modifier) {
+inline fun ColumnScope.IntroScreenLogoSection(modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -43,6 +46,16 @@ inline fun ColumnScope.RunJourneyLogoSection(modifier: Modifier = Modifier) {
                 fontSize = 24.sp,
                 color = MaterialTheme.colorScheme.onBackground
             )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun IntroScreenLogoSectionPreview() {
+    RunJourneyTheme {
+        GradientBackground {
+            IntroScreenLogoSection()
         }
     }
 }
