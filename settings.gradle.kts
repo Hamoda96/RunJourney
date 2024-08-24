@@ -16,6 +16,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "RunJourney"
 
+gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:convention:testClasses"))
+
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":auth:data")
