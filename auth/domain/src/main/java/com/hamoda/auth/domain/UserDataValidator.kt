@@ -1,10 +1,10 @@
 package com.hamoda.auth.domain
 
 class UserDataValidator(
-    private val patternValidtor: PatternValidator
+    private val patternValidator: PatternValidator
 ) {
     fun isValidEmail(email: String): Boolean {
-        return patternValidtor.matches(value = email.trim())
+        return patternValidator.matches(value = email.trim())
     }
 
     fun validatePassword(password: String): PasswordValidationState {

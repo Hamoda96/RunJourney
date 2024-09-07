@@ -100,6 +100,7 @@ google-maps-android-utils-ktx = { module = "com.google.maps.android:maps-utils-k
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-android-workmanager = { group = "io.insert-koin", name = "koin-androidx-workmanager", version.ref = "koin" }
+koin-androidx-navigation = { group = "io.insert-koin", name = "koin-androidx-navigation", version.ref = "koin" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
@@ -164,7 +165,7 @@ compose-debug = [
     "androidx-compose-ui-tooling",
     "androidx-compose-ui-test-manifest",
 ]
-koin = ["koin-core", "koin-android", "koin-android-workmanager"]
+koin = ["koin-core", "koin-android", "koin-android-workmanager", "koin-androidx-navigation"]
 koin-compose = ["koin-core", "koin-android", "koin-android-workmanager", "koin-androidx-compose"]
 ktor = [
     "ktor-client-auth",
