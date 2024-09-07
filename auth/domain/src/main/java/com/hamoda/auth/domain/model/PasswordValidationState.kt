@@ -1,4 +1,4 @@
-package com.hamoda.auth.domain
+package com.hamoda.auth.domain.model
 
 data class PasswordValidationState(
     val hasMinLength: Boolean = false,

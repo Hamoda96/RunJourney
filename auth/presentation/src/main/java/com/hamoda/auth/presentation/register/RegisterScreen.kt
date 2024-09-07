@@ -22,7 +22,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.hamoda.auth.domain.UserDataValidator
+import com.hamoda.auth.domain.model.UserDataValidator
 import com.hamoda.auth.presentation.R
 import com.hamoda.auth.presentation.register.component.PasswordRequirement
 import com.hamoda.core.presentation.designsystem.RunJourneyTheme

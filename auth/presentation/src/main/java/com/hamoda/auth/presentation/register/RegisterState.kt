@@ -4,7 +4,7 @@ package com.hamoda.auth.presentation.register
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.text2.input.TextFieldState
-import com.hamoda.auth.domain.PasswordValidationState
+import com.hamoda.auth.domain.model.PasswordValidationState
 
 data class RegisterState(
     val email: TextFieldState = TextFieldState(),

@@ -1,7 +1,7 @@
 package com.hamoda.auth.data
 
 import android.util.Patterns
-import com.hamoda.auth.domain.PatternValidator
+import com.hamoda.auth.domain.model.PatternValidator
 
 object EmailPatternValidator : PatternValidator {
     override fun matches(value: String): Boolean {
