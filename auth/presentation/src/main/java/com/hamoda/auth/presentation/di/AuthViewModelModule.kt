@@ -11,6 +11,6 @@ import org.koin.mp.KoinPlatform.getKoin
 val authViewModelModule = module {
     val scope = getKoin().getOrCreateScope<AuthFeatureScope>(AuthFeatureScope.getScopeId())
     viewModel {
-        RegisterViewModel(scope.get())
+        RegisterViewModel(userDataValidator = scope.get(), authRepository = scope.get())
     }
 }

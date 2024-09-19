@@ -3,6 +3,7 @@ package com.hamoda.runjourney
 import android.app.Application
 import com.hamoda.auth.data.di.authDataModule
 import com.hamoda.auth.presentation.di.authViewModelModule
+import com.hamoda.core.data.di.coreDataModule
 import com.hamoda.runjourney.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -23,7 +24,8 @@ class App : Application() {
             modules(
                 appModule,
                 authDataModule,
-                authViewModelModule
+                authViewModelModule,
+                coreDataModule
             )
         }
     }
