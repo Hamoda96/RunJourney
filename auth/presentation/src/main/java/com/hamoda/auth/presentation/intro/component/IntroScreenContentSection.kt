@@ -42,7 +42,7 @@ fun IntroScreenContentSection(modifier: Modifier = Modifier, onAction: (IntroAct
         RunJourneyOutlinedActionButton(
             text = stringResource(R.string.sign_in),
             isLoading = false,
-            onClick = { onAction(IntroAction.OnSignUpClick) },
+            onClick = { onAction(IntroAction.OnSignInClick) },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))

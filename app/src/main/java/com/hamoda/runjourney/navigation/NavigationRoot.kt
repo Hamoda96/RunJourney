@@ -1,6 +1,5 @@
 package com.hamoda.runjourney.navigation
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -8,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.hamoda.auth.presentation.intro.IntroScreenRoot
+import com.hamoda.auth.presentation.login.LoginScreenRoot
 import com.hamoda.auth.presentation.register.RegisterScreenRoot
 
 @Composable
@@ -43,6 +43,7 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController) {
                 onSignInClick = {
                     navController.navigate(route = "login") {
                         popUpTo(route = "register") {
+                            // inclusive = true: Removes the "auth" destination itself from the back stack.
                             inclusive = true
                             saveState = true
                         }
@@ -55,8 +56,25 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController) {
             )
         }
 
-        composable("login"){
-            Text(text = "Login")
+        composable("login") {
+            LoginScreenRoot(
+                onLoginSuccess = {
+                    navController.navigate(route = "run") {
+                        popUpTo("auth") {
+                            inclusive = true
+                        }
+                    }
+                },
+                onSignUpClick = {
+                    navController.navigate(route = "register") {
+                        popUpTo(route = "login") {
+                            inclusive = true
+                            saveState = true
+                        }
+                        restoreState = true
+                    }
+                }
+            )
         }
     }
 }
