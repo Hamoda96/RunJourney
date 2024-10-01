@@ -1,6 +1,8 @@
 package com.hamoda.core.data.networking
 
 import com.hamoda.core.data.BuildConfig
+import com.hamoda.core.data.networking.model.AccessTokenRequest
+import com.hamoda.core.data.networking.model.AccessTokenResponse
 import com.hamoda.core.domain.AuthInfo
 import com.hamoda.core.domain.SessionStorage
 import com.hamoda.core.domain.util.Result

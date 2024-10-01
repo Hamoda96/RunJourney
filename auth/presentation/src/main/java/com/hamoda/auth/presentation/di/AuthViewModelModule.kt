@@ -16,6 +16,6 @@ val authViewModelModule = module {
     }
 
     viewModel {
-        LoginViewModel()
+        LoginViewModel(authRepository = scope.get(), userDataValidator = scope.get())
     }
 }

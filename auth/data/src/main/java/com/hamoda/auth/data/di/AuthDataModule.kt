@@ -19,7 +19,7 @@ val authDataModule = module {
         }
 
         scoped<AuthRepository> {
-            AuthRepositoryImpl(httpClient = get())
+            AuthRepositoryImpl(httpClient = get(), sessionStorage = get())
         }
     }
 }

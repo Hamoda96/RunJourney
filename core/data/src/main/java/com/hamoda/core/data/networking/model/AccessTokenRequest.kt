@@ -1,4 +1,4 @@
-package com.hamoda.core.data.networking
+package com.hamoda.core.data.networking.model
 
 import kotlinx.serialization.Serializable
 
