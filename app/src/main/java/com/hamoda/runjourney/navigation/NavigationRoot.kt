@@ -1,6 +1,5 @@
 package com.hamoda.runjourney.navigation
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -10,6 +9,7 @@ import androidx.navigation.compose.navigation
 import com.hamoda.auth.presentation.intro.IntroScreenRoot
 import com.hamoda.auth.presentation.login.LoginScreenRoot
 import com.hamoda.auth.presentation.register.RegisterScreenRoot
+import com.hamoda.run.presntation.run_overview.RunOverviewScreenRoot
 
 @Composable
 fun NavigationRoot(
@@ -88,7 +88,7 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
         route = "run"
     ) {
         composable(route = "run_overview") {
-            Text(text = "run_overview!!")
+           RunOverviewScreenRoot()
         }
     }
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import com.hamoda.auth.data.di.authDataModule
 import com.hamoda.auth.presentation.di.authViewModelModule
 import com.hamoda.core.data.di.coreDataModule
+import com.hamoda.run.presntation.di.runViewModelModule
 import com.hamoda.runjourney.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -25,7 +26,8 @@ class App : Application() {
                 appModule,
                 authDataModule,
                 authViewModelModule,
-                coreDataModule
+                coreDataModule,
+                runViewModelModule
             )
         }
     }
