@@ -9,6 +9,7 @@ import androidx.navigation.compose.navigation
 import com.hamoda.auth.presentation.intro.IntroScreenRoot
 import com.hamoda.auth.presentation.login.LoginScreenRoot
 import com.hamoda.auth.presentation.register.RegisterScreenRoot
+import com.hamoda.run.presntation.active_run.ActiveRunScreenRoot
 import com.hamoda.run.presntation.run_overview.RunOverviewScreenRoot
 
 @Composable
@@ -88,7 +89,15 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
         route = "run"
     ) {
         composable(route = "run_overview") {
-           RunOverviewScreenRoot()
+            RunOverviewScreenRoot(
+                onStartRunClick = {
+                    navController.navigate(route = "active_run")
+                }
+            )
+        }
+
+        composable(route = "active_run") {
+            ActiveRunScreenRoot()
         }
     }
 }
