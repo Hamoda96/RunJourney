@@ -15,6 +15,33 @@ class ActiveRunViewModel : ViewModel() {
     private val eventChannel = Channel<ActiveRunEvent>()
     val events = eventChannel.receiveAsFlow()
 
+    private val _hasLocationPermission = mutableStateOf(false)
 
-    fun onAction(action: ActiveRunAction) {}
+    fun onAction(action: ActiveRunAction) {
+        when (action) {
+            ActiveRunAction.OnFinishRunClick -> {
+
+            }
+            ActiveRunAction.OnResumeRunClick -> {
+
+            }
+            ActiveRunAction.OnToggleRunClick -> {
+
+            }
+            is ActiveRunAction.SubmitLocationPermissionInfo -> {
+                _hasLocationPermission.value = action.acceptedLocationPermission
+                state = state.copy(showLocationRationale = action.showLocationRationale)
+            }
+            is ActiveRunAction.SubmitNotificationPermissionInfo -> {
+                state = state.copy(showNotificationRationale = action.showNotificationPermissionRationale)
+            }
+            is ActiveRunAction.DismissRationaleDialog -> {
+                state = state.copy(
+                    showLocationRationale = false,
+                    showNotificationRationale = false
+                )
+            }
+            else -> Unit
+        }
+    }
 }
