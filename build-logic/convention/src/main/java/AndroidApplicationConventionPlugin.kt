@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.hamoda.convention.ExtensionType
 import com.hamoda.convention.configureBuildTypes
 import com.hamoda.convention.configureKotlinAndroid
@@ -21,6 +22,9 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     targetSdk = libs.findVersion("projectTargetSdkVersion").get().toString().toInt()
                     versionCode = libs.findVersion("projectVersionCode").get().toString().toInt()
                     versionName = libs.findVersion("projectVersionName").get().toString()
+
+                    val MAPSAPIKEY = gradleLocalProperties(rootDir, rootProject.providers).getProperty("MAPS_API_KEY")
+                    manifestPlaceholders["MAPS_API_KEY"] = MAPSAPIKEY
                 }
 
                 configureKotlinAndroid(commonExtension = this)

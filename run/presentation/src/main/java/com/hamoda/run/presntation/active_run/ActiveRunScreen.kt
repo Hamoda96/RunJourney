@@ -33,6 +33,7 @@ import com.hamoda.core.presentation.designsystem.components.StartIcon
 import com.hamoda.core.presentation.designsystem.components.StopIcon
 import com.hamoda.run.presentation.R
 import com.hamoda.run.presntation.active_run.components.RunDataCard
+import com.hamoda.run.presntation.active_run.maps.TrackerMap
 import com.hamoda.run.presntation.utils.hasLocationPermission
 import com.hamoda.run.presntation.utils.hasNotificationPermission
 import com.hamoda.run.presntation.utils.shouldShowLocationPermissionRationale
@@ -142,6 +143,15 @@ private fun ActiveRunScreen(
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.surface)
         ) {
+            TrackerMap(
+                isRunFinished = state.isRunFinished,
+                currentLocation = state.currentLocation,
+                locations = state.runData.locations,
+                onSnapshot = {},
+                modifier = Modifier
+                    .fillMaxSize()
+            )
+
             RunDataCard(
                 elapsedTime = state.elapsedTime,
                 runData = state.runData,
