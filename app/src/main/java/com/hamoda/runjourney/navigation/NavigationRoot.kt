@@ -1,16 +1,20 @@
 package com.hamoda.runjourney.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import androidx.navigation.navDeepLink
 import com.hamoda.auth.presentation.intro.IntroScreenRoot
 import com.hamoda.auth.presentation.login.LoginScreenRoot
 import com.hamoda.auth.presentation.register.RegisterScreenRoot
 import com.hamoda.run.presntation.active_run.ActiveRunScreenRoot
+import com.hamoda.run.presntation.active_run.service.ActiveRunService
 import com.hamoda.run.presntation.run_overview.RunOverviewScreenRoot
+import com.hamoda.runjourney.MainActivity
 
 @Composable
 fun NavigationRoot(
@@ -96,8 +100,29 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
             )
         }
 
-        composable(route = "active_run") {
-            ActiveRunScreenRoot()
+        composable(
+            route = "active_run",
+            deepLinks = listOf(
+                navDeepLink {
+                    uriPattern = "runjourney://active_run"
+                }
+            )
+        ) {
+            val context = LocalContext.current
+            ActiveRunScreenRoot(
+                onServiceToggle = { shouldServiceRun ->
+                    if (shouldServiceRun) {
+                        context.startService(
+                            ActiveRunService.createStartIntent(
+                                context = context,
+                                activityClass = MainActivity::class.java
+                            )
+                        )
+                    } else {
+                        ActiveRunService.createStopIntent(context = context)
+                    }
+                }
+            )
         }
     }
 }

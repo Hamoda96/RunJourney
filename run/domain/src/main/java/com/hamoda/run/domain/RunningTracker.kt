@@ -30,7 +30,9 @@ class RunningTracker(
     private val _runData = MutableStateFlow(RunData())
     val runData = _runData.asStateFlow()
 
-    private val isTracking = MutableStateFlow(false)
+    private val _isTracking = MutableStateFlow(false)
+    val isTracking = _isTracking.asStateFlow()
+
     private val isObservingLocation = MutableStateFlow(false)
 
     private val _elapsedTime = MutableStateFlow(Duration.ZERO)
@@ -38,7 +40,7 @@ class RunningTracker(
 
     val currentLocation = isObservingLocation
         .flatMapLatest { isObservingLocation ->
-            if(isObservingLocation) {
+            if (isObservingLocation) {
                 locationObserver.observeLocation(1000L)
             } else flowOf()
         }
@@ -49,20 +51,22 @@ class RunningTracker(
         )
 
     init {
-        isTracking
+        _isTracking
             .onEach { isTracking ->
-                if(!isTracking) {
+                if (!isTracking) {
                     val newList = buildList {
                         addAll(runData.value.locations)
                         add(emptyList<LocationTimestamp>())
                     }.toList()
-                    _runData.update { it.copy(
-                        locations = newList
-                    ) }
+                    _runData.update {
+                        it.copy(
+                            locations = newList
+                        )
+                    }
                 }
             }
             .flatMapLatest { isTracking ->
-                if(isTracking) {
+                if (isTracking) {
                     Timer.timeAndEmit()
                 } else flowOf()
             }
@@ -73,8 +77,8 @@ class RunningTracker(
 
         currentLocation
             .filterNotNull()
-            .combineTransform(isTracking) { location, isTracking ->
-                if(isTracking) {
+            .combineTransform(_isTracking) { location, isTracking ->
+                if (isTracking) {
                     emit(location)
                 }
             }
@@ -86,7 +90,7 @@ class RunningTracker(
             }
             .onEach { location ->
                 val currentLocations = runData.value.locations
-                val lastLocationsList = if(currentLocations.isNotEmpty()) {
+                val lastLocationsList = if (currentLocations.isNotEmpty()) {
                     currentLocations.last() + location
                 } else listOf(location)
                 val newLocationsList = currentLocations.replaceLast(lastLocationsList)
@@ -97,7 +101,7 @@ class RunningTracker(
                 val distanceKm = distanceMeters / 1000.0
                 val currentDuration = location.durationTimestamp
 
-                val avgSecondsPerKm = if(distanceKm == 0.0) {
+                val avgSecondsPerKm = if (distanceKm == 0.0) {
                     0
                 } else {
                     (currentDuration.inWholeSeconds / distanceKm).roundToInt()
@@ -115,7 +119,7 @@ class RunningTracker(
     }
 
     fun setIsTracking(isTracking: Boolean) {
-        this.isTracking.value = isTracking
+        this._isTracking.value = isTracking
     }
 
     fun startObservingLocation() {
@@ -128,7 +132,7 @@ class RunningTracker(
 }
 
 private fun <T> List<List<T>>.replaceLast(replacement: List<T>): List<List<T>> {
-    if(this.isEmpty()) {
+    if (this.isEmpty()) {
         return listOf(replacement)
     }
     return this.dropLast(1) + listOf(replacement)

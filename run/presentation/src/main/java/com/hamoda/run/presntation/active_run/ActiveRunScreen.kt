@@ -35,6 +35,7 @@ import com.hamoda.core.presentation.designsystem.components.StopIcon
 import com.hamoda.run.presentation.R
 import com.hamoda.run.presntation.active_run.components.RunDataCard
 import com.hamoda.run.presntation.active_run.maps.TrackerMap
+import com.hamoda.run.presntation.active_run.service.ActiveRunService
 import com.hamoda.run.presntation.utils.hasLocationPermission
 import com.hamoda.run.presntation.utils.hasNotificationPermission
 import com.hamoda.run.presntation.utils.shouldShowLocationPermissionRationale
@@ -44,10 +45,12 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun ActiveRunScreenRoot(
     viewModel: ActiveRunViewModel = koinViewModel(),
+    onServiceToggle: (isServiceRunning: Boolean) -> Unit
 ) {
     ActiveRunScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction
+        onAction = viewModel::onAction,
+        onServiceToggle = onServiceToggle
     )
 }
 
@@ -55,6 +58,7 @@ fun ActiveRunScreenRoot(
 @Composable
 private fun ActiveRunScreen(
     state: ActiveRunState,
+    onServiceToggle: (isServiceRunning: Boolean) -> Unit,
     onAction: (ActiveRunAction) -> Unit
 ) {
 
@@ -104,8 +108,23 @@ private fun ActiveRunScreen(
             )
         )
 
-        if(!showLocationRationale && !showNotificationRationale) {
+        if (!showLocationRationale && !showNotificationRationale) {
             permissionLauncher.requestRunJourneyPermissions(context)
+        }
+    }
+
+    LaunchedEffect(key1 = state.isRunFinished) {
+        if (state.isRunFinished) {
+            onServiceToggle(false)
+        }
+    }
+
+    LaunchedEffect(key1 = state.shouldTrack) {
+        if (context.hasLocationPermission() &&
+            state.shouldTrack &&
+            !ActiveRunService.isServiceActive
+        ) {
+            onServiceToggle(true)
         }
     }
 
@@ -202,9 +221,11 @@ private fun ActiveRunScreen(
                 state.showLocationRationale && state.showNotificationRationale -> {
                     stringResource(id = R.string.location_notification_rationale)
                 }
+
                 state.showLocationRationale -> {
                     stringResource(id = R.string.location_rationale)
                 }
+
                 else -> {
                     stringResource(id = R.string.notification_rationale)
                 }
@@ -233,7 +254,7 @@ private fun ActivityResultLauncher<Array<String>>.requestRunJourneyPermissions(
         Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.ACCESS_FINE_LOCATION,
     )
-    val notificationPermission = if(Build.VERSION.SDK_INT >= 33) {
+    val notificationPermission = if (Build.VERSION.SDK_INT >= 33) {
         arrayOf(Manifest.permission.POST_NOTIFICATIONS)
     } else arrayOf()
 
@@ -241,6 +262,7 @@ private fun ActivityResultLauncher<Array<String>>.requestRunJourneyPermissions(
         !hasLocationPermission && !hasNotificationPermission -> {
             launch(locationPermissions + notificationPermission)
         }
+
         !hasLocationPermission -> launch(locationPermissions)
         !hasNotificationPermission -> launch(notificationPermission)
     }
@@ -252,7 +274,8 @@ private fun ActiveRunScreenPreview() {
     RunJourneyTheme {
         ActiveRunScreen(
             state = ActiveRunState(),
-            onAction = {}
+            onAction = {},
+            onServiceToggle = {}
         )
     }
 }
