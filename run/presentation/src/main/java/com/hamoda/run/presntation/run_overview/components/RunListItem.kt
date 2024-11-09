@@ -1,5 +1,7 @@
 @file:OptIn(ExperimentalFoundationApi::class, ExperimentalLayoutApi::class)
+
 package com.hamoda.run.presntation.run_overview.components
+
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -56,6 +58,7 @@ import java.time.ZonedDateTime
 import kotlin.math.max
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
+
 @Composable
 fun RunListItem(
     runUi: RunUi,
@@ -109,6 +112,7 @@ fun RunListItem(
         }
     }
 }
+
 @Composable
 private fun MapImage(
     imageUrl: String?,
@@ -149,6 +153,7 @@ private fun MapImage(
         }
     )
 }
+
 @Composable
 private fun RunningTimeSection(
     duration: String,
@@ -194,6 +199,7 @@ private fun RunningTimeSection(
         }
     }
 }
+
 @Composable
 private fun RunningDateSection(
     dateTime: String,
@@ -215,6 +221,7 @@ private fun RunningDateSection(
         )
     }
 }
+
 @Composable
 private fun DataGrid(
     run: RunUi,
@@ -263,6 +270,7 @@ private fun DataGrid(
         }
     }
 }
+
 @Composable
 private fun DataGridCell(
     runData: RunDataUi,
@@ -283,6 +291,7 @@ private fun DataGridCell(
         )
     }
 }
+
 @Preview
 @Composable
 private fun RunListItemPreview() {
@@ -298,7 +307,7 @@ private fun RunListItemPreview() {
                 totalElevationMeters = 123,
                 mapPictureUrl = null
             ).toRunUi(),
-            onDeleteClick = { /*TODO*/ }
+            onDeleteClick = { }
         )
     }
 }
