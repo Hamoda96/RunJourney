@@ -4,6 +4,7 @@ import android.app.Application
 import com.hamoda.auth.data.di.authDataModule
 import com.hamoda.auth.presentation.di.authViewModelModule
 import com.hamoda.core.data.di.coreDataModule
+import com.hamoda.core.database.di.databaseModule
 import com.hamoda.run.location.di.locationModule
 import com.hamoda.run.presntation.di.runViewModelModule
 import com.hamoda.runjourney.di.appModule
@@ -34,7 +35,8 @@ class App : Application() {
                 authViewModelModule,
                 coreDataModule,
                 runViewModelModule,
-                locationModule
+                locationModule,
+                databaseModule
             )
         }
     }

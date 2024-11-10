@@ -50,7 +50,7 @@ import com.hamoda.core.domain.location.Location
 import com.hamoda.core.presentation.designsystem.RunJourneyTheme
 import com.hamoda.core.presentation.designsystem.components.CalendarIcon
 import com.hamoda.core.presentation.designsystem.components.RunOutlinedIcon
-import com.hamoda.run.domain.Run
+import com.hamoda.core.domain.run.Run
 import com.hamoda.run.presentation.R
 import com.hamoda.run.presntation.active_run.mapper.toRunUi
 import com.hamoda.run.presntation.run_overview.model.RunDataUi

@@ -1,6 +1,6 @@
 package com.hamoda.run.presntation.active_run.mapper
 
-import com.hamoda.run.domain.Run
+import com.hamoda.core.domain.run.Run
 import com.hamoda.core.domain.util.formatted
 import com.hamoda.core.domain.util.toFormattedKm
 import com.hamoda.core.domain.util.toFormattedKmh

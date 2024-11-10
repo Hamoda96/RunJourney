@@ -1,4 +1,4 @@
-package com.hamoda.run.domain
+package com.hamoda.core.domain.run
 
 import com.hamoda.core.domain.location.Location
 import java.time.ZonedDateTime
