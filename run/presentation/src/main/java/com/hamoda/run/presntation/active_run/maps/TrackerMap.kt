@@ -150,7 +150,7 @@ fun TrackerMap(
                 )
 
                 // wait the camera to be idle for taking the snapshot
-                map.setOnMapClickListener {
+                map.setOnCameraIdleListener {
                     createSnapShotJob?.cancel()
                     createSnapShotJob = GlobalScope.launch {
                         //this delay to make sure the pic is clean and sharp

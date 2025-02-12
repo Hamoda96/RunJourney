@@ -9,7 +9,7 @@ import com.hamoda.core.domain.util.DataError
 import com.hamoda.core.domain.util.EmptyDataResult
 import com.hamoda.core.domain.util.Result
 import com.hamoda.core.domain.util.map
-import com.hamoda.run.domain.RemoteRunDataSource
+import com.hamoda.core.domain.run.RemoteRunDataSource
 import com.hamoda.run.network.model.dto.RunDto
 import io.ktor.client.HttpClient
 import io.ktor.client.request.forms.formData

@@ -6,6 +6,7 @@ import android.Manifest
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Build
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
@@ -33,6 +34,7 @@ import com.hamoda.core.presentation.designsystem.components.RunJourneyScaffold
 import com.hamoda.core.presentation.designsystem.components.RunJourneyToolbar
 import com.hamoda.core.presentation.designsystem.components.StartIcon
 import com.hamoda.core.presentation.designsystem.components.StopIcon
+import com.hamoda.core.presentation.ui.ObserveAsEvents
 import com.hamoda.run.presentation.R
 import com.hamoda.run.presntation.active_run.components.RunDataCard
 import com.hamoda.run.presntation.active_run.maps.TrackerMap
@@ -47,11 +49,33 @@ import java.io.ByteArrayOutputStream
 @Composable
 fun ActiveRunScreenRoot(
     viewModel: ActiveRunViewModel = koinViewModel(),
-    onServiceToggle: (isServiceRunning: Boolean) -> Unit
+    onServiceToggle: (isServiceRunning: Boolean) -> Unit,
+    onFinish: () -> Unit,
+    onBack: () -> Unit
 ) {
+    val context = LocalContext.current
+    ObserveAsEvents(viewModel.events) { event ->
+        when(event){
+            is ActiveRunEvent.Error -> {
+                Toast.makeText(context,event.error.asString(context),Toast.LENGTH_SHORT).show()
+            }
+            ActiveRunEvent.RunSaved -> onFinish()
+        }
+    }
+
     ActiveRunScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction,
+        onAction = { action ->
+            when(action){
+                is ActiveRunAction.OnBackClick -> {
+                    if (!viewModel.state.hasStartedRunning){
+                        onBack()
+                    }
+                }
+                else -> Unit
+            }
+            viewModel.onAction(action)
+        },
         onServiceToggle = onServiceToggle
     )
 }

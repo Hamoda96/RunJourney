@@ -6,6 +6,7 @@ import com.hamoda.auth.presentation.di.authViewModelModule
 import com.hamoda.core.data.di.coreDataModule
 import com.hamoda.core.database.di.databaseModule
 import com.hamoda.run.location.di.locationModule
+import com.hamoda.run.network.di.networkModule
 import com.hamoda.run.presntation.di.runViewModelModule
 import com.hamoda.runjourney.di.appModule
 import kotlinx.coroutines.CoroutineScope
@@ -36,7 +37,8 @@ class App : Application() {
                 coreDataModule,
                 runViewModelModule,
                 locationModule,
-                databaseModule
+                databaseModule,
+                networkModule
             )
         }
     }

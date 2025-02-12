@@ -1,6 +1,5 @@
-package com.hamoda.run.domain
+package com.hamoda.core.domain.run
 
-import com.hamoda.core.domain.run.Run
 import com.hamoda.core.domain.util.DataError
 import com.hamoda.core.domain.util.EmptyDataResult
 import com.hamoda.core.domain.util.Result

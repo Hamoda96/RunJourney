@@ -12,10 +12,10 @@ val runViewModelModule = module {
     singleOf(::RunningTracker)
 
     viewModel {
-        RunOverviewModel()
+        RunOverviewModel(get())
     }
 
     viewModel {
-        ActiveRunViewModel(get())
+        ActiveRunViewModel(get(),get())
     }
 }
