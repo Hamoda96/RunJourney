@@ -44,7 +44,7 @@ class RunOverviewModel(
 
     fun onAction(action: RunOverviewAction) {
         when (action) {
-            RunOverviewAction.OnLogoutClick -> logout()
+            RunOverviewAction.OnLogoutClick -> {}
             RunOverviewAction.OnStartClick -> Unit
             is RunOverviewAction.DeleteRun -> {
                 viewModelScope.launch {
