@@ -1,5 +1,6 @@
 package com.hamoda.core.data.run
 
+import com.hamoda.core.data.networking.get
 import com.hamoda.core.database.dao.RunPendingSyncDao
 import com.hamoda.core.database.mapper.toRun
 import com.hamoda.core.domain.SessionStorage
@@ -13,6 +14,10 @@ import com.hamoda.core.domain.util.DataError
 import com.hamoda.core.domain.util.EmptyDataResult
 import com.hamoda.core.domain.util.Result
 import com.hamoda.core.domain.util.asEmptyDataResult
+import io.ktor.client.HttpClient
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.BearerAuthProvider
+import io.ktor.client.plugins.plugin
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -26,7 +31,8 @@ class OfflineFirstRunRepository(
     private val applicationScope: CoroutineScope,
     private val runPendingSyncDao: RunPendingSyncDao,
     private val sessionStorage: SessionStorage,
-    private val syncRunScheduler: SyncRunScheduler
+    private val syncRunScheduler: SyncRunScheduler,
+    private val client: HttpClient
 ) : RunRepository {
     override fun getRuns(): Flow<List<Run>> {
         return localRunDataSource.getRun()
@@ -144,5 +150,21 @@ class OfflineFirstRunRepository(
             createJobs.forEach { it.join() }
             deleteJobs.forEach { it.join() }
         }
+    }
+
+    override suspend fun deleteAllRuns() {
+        localRunDataSource.deleteAllRuns()
+    }
+
+    override suspend fun logout(): EmptyDataResult<DataError.Network> {
+        val result = client.get<Unit>(
+            route = "/logout"
+        ).asEmptyDataResult()
+
+        client.plugin(Auth).providers.filterIsInstance<BearerAuthProvider>()
+            .firstOrNull()
+            ?.clearToken()
+
+        return result
     }
 }

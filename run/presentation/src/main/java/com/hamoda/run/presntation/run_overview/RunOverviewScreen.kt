@@ -36,6 +36,7 @@ import com.hamoda.run.presntation.run_overview.components.RunListItem
 @Composable
 fun RunOverviewScreenRoot(
     onStartRunClick: () -> Unit,
+    onLogoutClick: () -> Unit,
     viewModel: RunOverviewModel = koinViewModel()
 ) {
     RunOverviewScreen(
@@ -43,6 +44,7 @@ fun RunOverviewScreenRoot(
         onAction = { action ->
             when (action) {
                 RunOverviewAction.OnStartClick -> onStartRunClick()
+                RunOverviewAction.OnLogoutClick -> onLogoutClick()
                 else -> {}
             }
             viewModel.onAction(action)
