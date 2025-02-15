@@ -6,13 +6,16 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hamoda.core.domain.run.RunRepository
+import com.hamoda.core.domain.run.SyncRunScheduler
 import com.hamoda.run.presntation.active_run.mapper.toRunUi
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.minutes
 
 class RunOverviewModel(
-    private val runRepository: RunRepository
+    private val runRepository: RunRepository,
+    private val syncRunScheduler: SyncRunScheduler
 ) : ViewModel() {
 
 
@@ -20,6 +23,10 @@ class RunOverviewModel(
         private set
 
     init {
+        viewModelScope.launch {
+            syncRunScheduler.scheduleSync(SyncRunScheduler.SyncType.FetchRuns(30.minutes))
+        }
+
         runRepository.getRuns().onEach { runs ->
             val runsUi = runs.map { it.toRunUi() }
             state = state.copy(runs = runsUi)
